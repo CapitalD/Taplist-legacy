@@ -1,0 +1,36 @@
+{
+    "location": "Our House",
+    "last_updated": "14/09/2014",
+    "taps": [
+        {
+            "name": "Tap One",
+            "beer": {
+                "name": "Aardvark",
+                "style": "American Amber Ale",
+                "abv": 6,
+                "ibu": 44,
+                "ebc": 42
+            }
+        },
+        {
+            "name": "Tap Two",
+            "beer": {
+                "name": "Milk Chocolate Stout",
+                "style": "",
+                "abv": 5.8,
+                "ibu": 40,
+                "ebc": 93.4
+            }
+        },
+        {
+            "name": "Tap Three",
+            "beer": {
+                "name": "The Imp",
+                "style": "Imperial Stout",
+                "abv": 9.5,
+                "ibu": 76.8,
+                "ebc": 127
+            }
+        }
+    ]
+}

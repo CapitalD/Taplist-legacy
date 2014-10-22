@@ -1,0 +1,1 @@
+{ "taps": [ { "name": "Tap One" }, { "name": "Tap Two", "beer": { "name": "Milk Chocolate Stout", "abv": "5.8", "ibu": "40", "ebc": "93.4" } }, { "name": "Tap Three", "beer": { "name": "Hop Sauce", "style": "Open Source IPA", "abv": "6.8", "ibu": "78.9", "ebc": "14.7" } } ], "last_updated": "22/10/2014 00:08.27" }

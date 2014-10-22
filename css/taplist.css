@@ -1,0 +1,74 @@
+#tap_sheet {
+	margin: 2em;
+}
+            
+.tap_label {
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	font-family: Questrial;
+	font-size: 1.5em;
+	line-height: 1.25em;
+	text-align: center;
+	margin-top: 2em;
+}
+
+
+h2, h3 {
+	font-family: Questrial;
+	text-align: center;
+}
+
+h3 {
+	color: #ccc;
+}
+
+.beer_style {
+	font-family: Questrial;
+	text-align: center;
+}
+
+.ibu, .abv {
+	text-align: center;
+	font-family: Questrial;
+	font-size: 2em;
+}
+
+.ibu_label, .abv_label {
+	text-align: center;
+	font-family: Questrial;
+}
+
+@media (min-width: 768px) {
+	.label_name {
+		min-height: 8em;
+	}
+                
+	h2, h3 {
+		margin-top: 2em;
+	}
+
+}
+
+@media (max-width: 767px) {
+    .tap_label {
+        margin-left: -2em;
+        margin-right: -2em;
+    }
+
+    .tap_label.first {
+	margin-top: 0;
+    }
+}
+
+.beer_colour {
+	margin-top: 2em;
+	height: 0.5em;
+	background-color: #c00;
+}
+
+#last_updated {
+    margin-top: 2em;
+    color: #ccc;
+    text-align: right;
+    font-size: 0.75em;
+}

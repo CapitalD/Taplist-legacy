@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tap List</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="http://fonts.googleapis.com/css?family=Questrial" rel="stylesheet" type="text/css">
+	<link href="css/taplist.css" rel="stylesheet" tyep="text/css">
+    </head>
+
+    <body>
+
+        <div id="tap_sheet" class="container-fluid">
+            <div class="row" id="tap_row"></div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p id="last_updated"></p>
+                </div>
+            </div>
+        </div>
+
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/ebctohex.js"></script>
+        <script type="text/javascript">
+            $("document").ready(function() {
+                $.getJSON('taplist.json', function(data) {
+                    show_taps(data);
+                    $("#last_updated").html("updated: " + data.last_updated);
+                });
+                    
+            });
+
+            function show_taps(json_data) {
+                $.each(json_data.taps, function(i) {
+					var tap_name = (this.name == undefined) ? "" : this.name;
+                    tap_column = '<div class="col-sm-4"><div class="column_content"><div class="tap_label">';
+                    tap_column = tap_column + tap_name;
+
+					if (!this.beer) {
+						tap_column = tap_column + '</div><div class="label_name"><h3>nothing</h3></div></div></div>';
+	                    $("#tap_row").append(tap_column);
+					} else {
+						var beer_name = (this.beer.name == undefined) ? "" : this.beer.name;
+						var beer_style = (this.beer.style == undefined) ? "" : this.beer.style;
+						var beer_abv = (this.beer.abv == undefined) ? "-" : this.beer.abv;
+						var beer_ibu = (this.beer.ibu == undefined) ? "-" : this.beer.ibu;
+						var beer_ebc = (this.beer.ebc == undefined) ? 0 : this.beer.ebc;
+					
+	                    tap_column = tap_column + '</div><div class="label_name"><h2>';
+	                    tap_column = tap_column + beer_name;
+	                    tap_column = tap_column + '</h2><p class="beer_style">';
+	                    tap_column = tap_column + beer_style;
+	                    tap_column = tap_column + '</p></div><div class="row"><div class="col-xs-6"><p class="abv">';
+	                    tap_column = tap_column + beer_abv;
+	                    tap_column = tap_column + '%</p><p class="abv_label">alcohol by volume</p></div><div class="col-xs-6"><p class="ibu">';
+	                    tap_column = tap_column + beer_ibu;
+	                    tap_column = tap_column +'</p><p class="ibu_label">bittering units</p></div></div><div class="row"><div class="col-xs-12"><div class="beer_colour"></div></div></div></div></div>';
+	                    $("#tap_row").append(tap_column);
+	                    $(".beer_colour:last").css("background-color", get_hex_from_ebc(beer_ebc));
+					}
+                });
+            $(".tap_label:eq(0)").addClass("first");
+            }
+        </script>
+    </body>
+</html>
