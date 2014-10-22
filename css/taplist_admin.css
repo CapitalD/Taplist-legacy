@@ -6,5 +6,8 @@
     margin-top: 1.8em;
 }
 
-#json_output {
+hr.mobile-separator {
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
 }
