@@ -21,9 +21,11 @@ Todo
 * Improve responsiveness of admin
 * Improve adeptation to better support different numbers of taps
 * Source tap data from elsewhere
- * Beersmith recipes
  * <del>BeerXML</del>
  * Recipe sites
+  * beersmithrecipes.com
+  * brewtoad.com
+  * brewersfriend.com
 * Link to beer on other sites
  * Untappd
  * Ratebeer
