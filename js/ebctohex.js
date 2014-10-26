@@ -67,6 +67,10 @@ function srmFromEbc(ebc) {
     return ebc/1.97;
 }
 
+function ebcFromSrm(srm) {
+	return 1.97*srm;
+}
+
 function get_hex_from_ebc(ebc) {
 	if (ebc == 0) {
 		return "#ffffff";
