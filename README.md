@@ -1,7 +1,7 @@
 Taplist
 =======
 
-v0.2
+v0.3a
 
 Simple beer tap listing using a json data source.  Responsive listing page displays what's on tap, and an admin page to manage the json data.
 
@@ -19,9 +19,10 @@ The back-end.  A form to manage the json data.  Currently optimised for three ta
 Todo
 ====
 * Improve responsiveness of admin
+* Improve adeptation to better support different numbers of taps
 * Source tap data from elsewhere
  * Beersmith recipes
- * BeerXML
+ * <del>BeerXML</del>
  * Recipe sites
 * Link to beer on other sites
  * Untappd
