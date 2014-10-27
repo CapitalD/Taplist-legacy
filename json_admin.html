@@ -48,12 +48,7 @@
 						  <label for="beerxml_input">Open BeerXML</label>
 						  <input type="file" class="file" id="beerxml_input" data-show-upload="false" data-show-preview="false" data-browse-class="btn btn-info">
 					  </div>
-					  <p>OR</p>
-					  <div class="form-group">
-						  <label for="open_url">Open from URL</label>
-						  <input type="text" class="form-control" name="open_url" id="open_url">
-					  </div>
-				</form>
+				  </form>
 		      </div>
 			  <div class="modal-footer">
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -71,7 +66,6 @@
         <script type="text/javascript">
 		
             $("document").ready(function() {
-
 
             	$.getJSON('taplist.json', function(data) {
             		populate_form(data);
