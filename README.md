@@ -23,7 +23,8 @@ Todo
 * Improve error handling across the board
 * Preview tap display in admin
 * Source tap data from file
- * <del>BeerXML</del>
+ * <del>BeerXML</del> - basic implementation done
+ * Support loading multiple taps if multiple recipes are in beerxml data
  * others?
 * Source tap data from URL
  * BeerXML
