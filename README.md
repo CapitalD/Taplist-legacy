@@ -20,12 +20,16 @@ Todo
 ====
 * Improve responsiveness of admin
 * Improve adeptation to better support different numbers of taps
-* Source tap data from elsewhere
+* Improve error handling across the board
+* Preview tap display in admin
+* Source tap data from file
  * <del>BeerXML</del>
- * Recipe sites
-  * beersmithrecipes.com
-  * brewtoad.com
-  * brewersfriend.com
+ * others?
+* Source tap data from URL
+ * BeerXML
+ * beersmithrecipes.com
+ * brewtoad.com
+ * brewersfriend.com
 * Link to beer on other sites
  * Untappd
  * Ratebeer
