@@ -45,8 +45,8 @@
 				  <form role="form">
 					  <input type="hidden" name="load_tap_number">
 					  <div class="form-group">
-						  <label for="beerxml_input">Open BeerXML</label>
-						  <input type="file" class="file" id="beerxml_input" data-show-upload="false" data-show-preview="false" data-browse-class="btn btn-info">
+						  <label for="open_beerxml">Open BeerXML</label>
+						  <input type="file" class="file" id="open_beerxml" data-show-upload="false" data-show-preview="false" data-browse-class="btn btn-info">
 					  </div>
 					  <p>OR</p>
 					  <div class="form-group">
@@ -57,7 +57,7 @@
 		      </div>
 			  <div class="modal-footer">
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			          <button type="button" id="open_beerxml_button" class="btn btn-primary">Load file</button>
+			          <button type="button" id="load_button" class="btn btn-primary">Load file</button>
 			        </div>
 		    </div>
 		  </div>
@@ -178,13 +178,16 @@
 					$("input[name='load_tap_number']").val(tap_index);
 				});
 
-            	$("#open_beerxml_button").on("click", function() {
-					
-            		if ($("#beerxml_input").val() && $("input[name='load_tap_number']").val()) {
-						var filename = $("#beerxml_input").val().split('\\');
-						filename = filename[filename.length-1];
-            			open_beerxml($("input[name='load_tap_number']").val(),filename);
-            		}
+            	$("#load_button").on("click", function() {
+					if ($("input[name='load_tap_number']").val()) {
+						if ($("#open_beerxml").val()) {
+							var filename = $("#open_beerxml").val().split('\\');
+							filename = filename[filename.length-1];
+	            			open_beerxml($("input[name='load_tap_number']").val(),filename);
+						} else if ($("#open_url").val()) {
+							console.log('open url');
+						}
+					}
 
             	});
 
