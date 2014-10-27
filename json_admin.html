@@ -39,18 +39,26 @@
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-		        <h4 class="modal-title">Open recipe</h4>
+		        <h4 class="modal-title">Choose recipe file...</h4>
 		      </div>
 		      <div class="modal-body">
 				  <form role="form">
 					  <input type="hidden" name="load_tap_number">
 					  <div class="form-group">
 						  <label for="beerxml_input">Open BeerXML</label>
-						  <input type="file" class="file" id="beerxml_input" data-show-upload="false" data-show-preview="false">
+						  <input type="file" class="file" id="beerxml_input" data-show-upload="false" data-show-preview="false" data-browse-class="btn btn-info">
 					  </div>
-				<input type="button" id="open_beerxml_button" class="btn btn-primary" value="Open">
+					  <p>OR</p>
+					  <div class="form-group">
+						  <label for="open_url">Open from URL</label>
+						  <input type="text" class="form-control" name="open_url" id="open_url">
+					  </div>
 				</form>
 		      </div>
+			  <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			          <button type="button" id="open_beerxml_button" class="btn btn-primary">Load file</button>
+			        </div>
 		    </div>
 		  </div>
 		</div>
