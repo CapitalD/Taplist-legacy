@@ -1,7 +1,7 @@
 Taplist
 =======
 
-v0.3a
+v0.4
 
 Simple beer tap listing using a json data source.  Responsive listing page displays what's on tap, and an admin page to manage the json data.
 
@@ -23,9 +23,8 @@ Todo
 * Improve error handling across the board
 * Preview tap display in admin
 * Source tap data from file
- * <del>BeerXML</del> - basic implementation done
- * Support loading multiple taps if multiple recipes are in beerxml data
- * others?
+ * <del>BeerXML</del>
+ * <del>Choose a recipe to load if multiple recipes are in beerxml data</del>
 * Source tap data from URL
  * BeerXML
  * beersmithrecipes.com
