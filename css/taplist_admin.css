@@ -11,3 +11,7 @@ hr.mobile-separator {
     border-bottom: 1px dashed #ccc;
     background: #999;
 }
+
+.alert-text-with-icon {
+	padding-left: 2em;
+}
