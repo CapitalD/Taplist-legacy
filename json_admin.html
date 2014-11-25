@@ -49,6 +49,37 @@
 						  <input type="file" class="file" id="beerxml_input" data-show-upload="false" data-show-preview="false" data-browse-class="btn btn-info">
 					  </div>
 				  </form>
+				  <div class="alert alert-info hidden" role="alert" id="checking_message">
+					  <img src="/img/loading.gif" class="pull-left"><p class="alert-text-with-icon">Checking beerXML</p>
+				  </div>
+				  <div class="alert alert-success hidden" role="alert" id="success_message">
+					  <span class="glyphicon glyphicon-ok pull-left"></span><p class="alert-text-with-icon">Awesome! <span id="recipe_count">0</span> recipe found.</p>
+				  </div>
+
+				  <div class="alert alert-danger hidden" role="alert" id="error_message">
+					  <span class="glyphicon glyphicon-remove pull-left"></span><p class="alert-text-with-icon">Nope.  That isn't a valid beerXML file, sorry.</p>
+				  </div>
+				  
+				  <table class="table table-striped hidden" id="recipe_results">
+					  <tr>
+						  <th></th>
+						  <th>Name</th>
+						  <th>Style<th>
+					  </tr>
+					  <!--
+					  <tr>
+						  <td><input type="radio" name="loaded_recipes" checked></td>
+						  <td>Bookbinder</td>
+						  <td>Standard/Ordinary Bitter</td>
+					  </tr>
+					  <tr>
+						  <td><input type="radio" name="loaded_recipes"></td>
+						  <td>Something</td>
+						  <td>Blah blah IPA</td>
+					  </tr>
+					  -->
+				  </table>
+				  
 		      </div>
 			  <div class="modal-footer">
 			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -172,30 +203,91 @@
 					$("input[name='load_tap_number']").val(tap_index);
 				});
 
+
+				$("#beerxml_input").on("change", function() {
+					if ($("#beerxml_input").val()) {
+						clear_load_messages();
+						$("#checking_message").removeClass("hidden");
+						reset_results_table();
+						var filename = get_filename($("#beerxml_input").val());
+						get_xml_summary(filename);
+					}
+				});
+				
             	$("#open_beerxml_button").on("click", function() {
-					
-            		if ($("#beerxml_input").val() && $("input[name='load_tap_number']").val()) {
-						var filename = $("#beerxml_input").val().split('\\');
-						filename = filename[filename.length-1];
-            			open_beerxml($("input[name='load_tap_number']").val(),filename);
+            		if ($("#beerxml_input").val() && $("input[name='load_tap_number']").val() && $("input[name='loaded_recipes']").val()) {
+						var filename = get_filename($("#beerxml_input").val());
+						var nth = $("input[name='loaded_recipes']:checked").val();
+            			open_beerxml($("input[name='load_tap_number']").val(),filename, nth);
             		}
 
             	});
+				
+				$('#beerxml_input').on('fileclear', function(event) {
+				    clear_load_messages();
+					reset_results_table();
+				});
 
             }
 
-            function open_beerxml(tap_index, beerxml_file) {
+			function clear_load_messages() {
+				$("#checking_message, #success_message, #error_message").addClass("hidden");
+			}
 
+			function reset_results_table() {
+				$("#recipe_results").addClass("hidden");
+				$("#recipe_results tr.removable").remove();
+			}
+
+			function get_xml_summary(filename) {
+            	$.ajax({
+            		url: filename,
+            		dataType: 'xml',
+            		success: function(data) {
+						var recipes = $('RECIPES', data);
+						recipe_count = recipes.find('RECIPE').length;
+						if (recipe_count) {
+							clear_load_messages();
+							$("#recipe_count").html(recipe_count);
+							$("#success_message").removeClass("hidden");
+						}
+						
+						recipes.find('RECIPE').each(function(index) {
+	            			var beer_name = $(this).find('NAME').first().text();
+	            			var beer_style = $(this).find('STYLE > NAME').first().text();
+							var table_row = "<tr class=\"removable\"><td><input type=\"radio\" name=\"loaded_recipes\" value=\""+index+"\" checked></td><td>"+beer_name+"</td><td>"+beer_style+"</td></tr>";
+							$("#recipe_results").append(table_row);
+						});
+
+						$("#recipe_results").removeClass("hidden");
+
+						
+            		},
+            		error: function(data) {
+						clear_load_messages();
+						$("#error_message").removeClass("hidden");
+            		}
+            	});				
+			}
+
+			function get_filename(input_value) {
+				var fname = input_value.split('\\');
+				fname = fname[fname.length-1];
+				return fname;
+			}
+
+            function open_beerxml(tap_index, beerxml_file, nth) {
             	$.ajax({
             		url: beerxml_file,
             		dataType: 'xml',
             		success: function(data) {
-            			var first_recipe = $('RECIPE', data);
-            			var beer_name = first_recipe.find('NAME').first().text();
-            			var beer_style = first_recipe.find('STYLE > NAME').first().text();
-            			var beer_abv = first_recipe.find('ABV').first().text();
-            			var beer_ibu = first_recipe.find('IBU').first().text();
-            			var beer_colour = first_recipe.find('EST_COLOR').first().text();
+						var recipes = $('RECIPES', data);
+            			var nth_recipe = recipes.find('RECIPE').eq(nth);
+            			var beer_name = nth_recipe.find('NAME').first().text();
+            			var beer_style = nth_recipe.find('STYLE > NAME').first().text();
+            			var beer_abv = nth_recipe.find('ABV').first().text();
+            			var beer_ibu = nth_recipe.find('IBU').first().text();
+            			var beer_colour = nth_recipe.find('EST_COLOR').first().text();
 						
 						load_recipe(tap_index, beer_name, beer_style, beer_abv, beer_ibu, beer_colour);
 						$("#load_recipe_modal").modal('hide');
