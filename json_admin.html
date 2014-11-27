@@ -201,6 +201,7 @@
 				$("#load_recipe_modal").on('show.bs.modal', function(e) {
 					var tap_index = $(e.relatedTarget).data('tap-id');
 					$("input[name='load_tap_number']").val(tap_index);
+					$("#open_beerxml_button").html("Load on " + $("#tap"+tap_index+"_label").val());
 				});
 
 
